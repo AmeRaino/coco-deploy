@@ -1,0 +1,62 @@
+import hpp from 'hpp';
+
+import userRoutes from './userRoutes';
+import permissionRoutes from './permissionRoutes';
+import organizationRoutes from './organizationRoutes';
+import rolesRoutes from './rolesRoutes';
+import accountRequestRoutes from './accountRequestRoutes';
+import courseRoutes from './courseRoutes';
+import mentorRoutes from './mentorRoutes';
+import courseReviewsRoutes from './courseReviewsRoutes';
+import userReviewsRoutes from './userReviewsRoutes';
+import userProfileRoutes from './userProfileRoutes';
+import consultingFieldRoutes from './consultingFieldRoutes';
+import conversationRoutes from './conversationRoutes';
+import userConnectionRoutes from './userConnectionRoutes';
+import courseReviewSuggestionTagRoutes from './courseReviewSuggestionTagRoutes';
+import userReviewSuggestionTagFieldRoutes from './userReviewSuggestionTagFieldRoutes';
+import userTodoListRoutes from './userTodoListRoutes';
+import mentorRegistrationRoutes from './mentorRegistrationRoutes';
+import userAppointmentRoutes from './userAppointmentRoutes';
+import menteeRoutes from './menteeRoutes';
+import addressRoutes from './addressRoutes';
+import bannerRoutes from './bannerRoutes';
+import adminRoutes from '../routes/admin/indexRoutes';
+import deviceTokenRoutes from './deviceTokenRoutes';
+import notificationRoutes from './notificationRoutes';
+import blogRoutes from './blogRoutes';
+import uploadRoutes from './uploadRoutes';
+import coursemember from './courseMemberRoutes';
+
+module.exports = (app) => {
+    // Prevent parameter pollution
+    app.use(hpp());
+    // Routes
+    adminRoutes('/api/v1/admin', app);
+    app.use('/api/v1/users', userRoutes);
+    app.use('/api/v1/permissions', permissionRoutes);
+    app.use('/api/v1/roles', rolesRoutes);
+    app.use('/api/v1/organizations', organizationRoutes);
+    app.use('/api/v1/account-request', accountRequestRoutes);
+    app.use('/api/v1/course', courseRoutes);
+    app.use('/api/v1/mentor', mentorRoutes);
+    app.use('/api/v1/course-reviews', courseReviewsRoutes);
+    app.use('/api/v1/user-reviews', userReviewsRoutes);
+    app.use('/api/v1/user-profile', userProfileRoutes);
+    app.use('/api/v1/consulting-field', consultingFieldRoutes);
+    app.use('/api/v1/conversations', conversationRoutes);
+    app.use('/api/v1/user-connection', userConnectionRoutes);
+    app.use('/api/v1/course-review-suggestion-tag', courseReviewSuggestionTagRoutes);
+    app.use('/api/v1/user-review-suggestion-tag', userReviewSuggestionTagFieldRoutes);
+    app.use('/api/v1/user-todo-list', userTodoListRoutes);
+    app.use('/api/v1/mentor-registration', mentorRegistrationRoutes);
+    app.use('/api/v1/user-appointment', userAppointmentRoutes);
+    app.use('/api/v1/mentee', menteeRoutes);
+    app.use('/api/v1/address', addressRoutes);
+    app.use('/api/v1/banner', bannerRoutes);
+    app.use('/api/v1/device-token', deviceTokenRoutes);
+    app.use('/api/v1/notifications', notificationRoutes);
+    app.use('/api/v1/blog', blogRoutes);
+    app.use('/api/v1/upload', uploadRoutes);
+    app.use('/api/v1/course-member', coursemember);
+};
