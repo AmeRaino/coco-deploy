@@ -6,7 +6,8 @@
   "scripts": {
     "debug": "ndb server.js",
     "start": "nodemon --exec babel-node server.js",
-    "swagger-autogen": "node swagger.js"
+    "swagger-autogen": "node swagger.js",
+    "vercel-build": ""
   },
   "author": "Moath Shreim",
   "license": "ISC",
