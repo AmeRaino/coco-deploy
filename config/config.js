@@ -3,7 +3,7 @@ require('dotenv').config(); //instatiate environment variables
 let CONFIG = {}; //Make this global to use all over the application
 
 CONFIG.app = process.env.APP || 'dev';
-CONFIG.port = process.env.PORT || '3000';
+CONFIG.port = '5000' || '3000';
 CONFIG.host = process.env.HOST || 'http://localhost';
 
 CONFIG.db_dialect = process.env.DB_DIALECT || 'mysql';
