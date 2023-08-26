@@ -82,8 +82,8 @@ firebase.initializeApp({
     credential: firebase.credential.cert(serviceAccount)
 });
 
-server.listen(port, () => {
-    console.log(`Application is running on port ${port}`);
+server.listen(8000, () => {
+    console.log(`Application is running on port ${8000}`);
 });
 
 cron.schedule('00 00 09 * * *', async () => {
