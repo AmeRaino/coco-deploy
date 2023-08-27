@@ -59,7 +59,7 @@ sequelize
 // }
 
 // Start the server
-const port = 5000;
+const port = 5327;
 // app.listen(port, () =>
 // {
 //     console.log(`Application is running on port ${port}`);
@@ -78,7 +78,7 @@ firebase.initializeApp({
     credential: firebase.credential.cert(serviceAccount)
 });
 
-httpServer.listen(port, () => {
+httpServer.listen(port, '0.0.0.0', () => {
     console.log(`Application is running on port ${port}`);
 });
 
