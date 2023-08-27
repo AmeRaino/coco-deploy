@@ -1,15 +1,14 @@
-import { createDefaultRoles } from './controllers/roleController';
-import { createDefaultPermissions } from './controllers/permissionController';
-import { createDefaultOrganizations } from './controllers/organizationController';
-import { createDefaultUser } from './controllers/userController';
-import { createDefaultRoleType } from './controllers/roleTypeController';
-import initDataTempController from './controllers/initDataTempController';
-import { db_name, host, port as _port } from './config/config';
-import { initSocket } from './controllers/socketController';
 import firebase from 'firebase-admin';
+import * as http from 'http';
+import { port as _port, db_name, host } from './config/config';
 import serviceAccount from './config/key/serviceAccountKey.json';
-import { ReS } from './utils/util.service';
-import { getCourse } from './dao/course_member.dao';
+import initDataTempController from './controllers/initDataTempController';
+import { createDefaultOrganizations } from './controllers/organizationController';
+import { createDefaultPermissions } from './controllers/permissionController';
+import { createDefaultRoles } from './controllers/roleController';
+import { createDefaultRoleType } from './controllers/roleTypeController';
+import { initSocket } from './controllers/socketController';
+import { createDefaultUser } from './controllers/userController';
 
 const cron = require('node-cron');
 
@@ -27,12 +26,9 @@ process.on('uncaughtException', (err) => {
 
 import app from './app';
 
-import { sequelize } from './models';
-import { reScheduleJobsAfterRestartServer } from './lib/schedule';
-import moment from 'moment';
 import { sendNotificationToMentee } from './controllers/courseMemberController';
-import { request } from 'http';
-import { async } from '@firebase/util';
+import { reScheduleJobsAfterRestartServer } from './lib/schedule';
+import { sequelize } from './models';
 
 sequelize
     .authenticate()
@@ -69,8 +65,8 @@ const port = _port;
 //     console.log(`Application is running on port ${port}`);
 // });
 
-var server = require('http').Server(app);
-var io = require('socket.io')(server, {
+const httpServer = http.createServer(app);
+var io = require('socket.io')(httpServer, {
     cors: {
         origin: '*'
     }
@@ -82,7 +78,7 @@ firebase.initializeApp({
     credential: firebase.credential.cert(serviceAccount)
 });
 
-server.listen(port, () => {
+httpServer.listen(port, () => {
     console.log(`Application is running on port ${port}`);
 });
 
@@ -93,7 +89,7 @@ cron.schedule('00 00 09 * * *', async () => {
 process.on('unhandledRejection', (err) => {
     console.log('UNHANDLED REJECTION!!!  shutting down ...');
     console.log(err.name, err.message);
-    server.close(() => {
+    httpServer.close(() => {
         process.exit(1);
     });
 });
