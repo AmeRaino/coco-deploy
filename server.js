@@ -59,7 +59,7 @@ sequelize
 // }
 
 // Start the server
-const port = 5327;
+const port = 3000;
 // app.listen(port, () =>
 // {
 //     console.log(`Application is running on port ${port}`);
