@@ -78,7 +78,7 @@ firebase.initializeApp({
     credential: firebase.credential.cert(serviceAccount)
 });
 
-httpServer.listen(port, '0.0.0.0', () => {
+httpServer.listen(port, () => {
     console.log(`Application is running on port ${port}`);
 });
 
