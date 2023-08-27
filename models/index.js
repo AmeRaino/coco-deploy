@@ -1,4 +1,5 @@
 'use strict';
+import mysql2 from 'mysql2';
 const CONFIG = require('../config/config');
 var fs = require('fs');
 var path = require('path');
@@ -18,6 +19,7 @@ const sequelize = new Sequelize(CONFIG.db_name, CONFIG.db_user, CONFIG.db_passwo
         timezone: '+07:00',
         ssl: { minVersion: 'TLSv1.2', rejectUnauthorized: true }
     },
+    dialectModule: mysql2,
     timezone: '+07:00', //for writing to database
     logging: false
 });
